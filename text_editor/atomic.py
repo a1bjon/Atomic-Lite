@@ -97,7 +97,7 @@ def main():
             self.help_btn.pack(padx=4, side='left')
 
             self.quit_btn = tk.Button(self.menu_bar, text='Quit', width=6,
-                bg='grey12', fg='grey', font=('consolas', 10), border=0, command=master.destroy)
+                bg='grey12', fg='grey', font=('consolas', 10), border=0, command=self.quit)
             self.quit_btn.pack(padx=2, side='left')
 
             self.scrollbar_con = tk.Frame(master, highlightbackground='grey', highlightthickness=2)
@@ -125,6 +125,41 @@ def main():
 
             self.text_box.bind('<KeyPress>', self.update_cnt)
             self.text_box.bind('<KeyRelease>', self.update_cnt)
+
+            root.protocol('WM_DELETE_WINDOW', self.store_session)
+            self.restore_session()
+
+        def store_session(self):
+            if os.path.exists('appdata'):
+                with open('appdata/text_data.txt', 'w', encoding='utf-8') as f:
+                    f.write(self.text_box.get('1.0', 'end-1c'))
+
+                with open('appdata/file_name_data.txt', 'w') as f:
+                    f.write(self.file_name_lbl['text'])
+            else:
+                os.mkdir('appdata')
+                with open('appdata/text_data.txt', 'w', encoding='utf-8') as f:
+                    f.write(self.text_box.get('1.0', 'end-1c'))
+
+                with open('appdata/file_name_data.txt', 'w') as f:
+                    f.write(self.file_name_lbl['text'])
+                tk.messagebox.showerror(
+                 'Missing Appdata', 'appdata folder not found. Repairing...')
+
+            root.destroy()
+
+        def restore_session(self):
+            try:
+                with open('appdata/text_data.txt', 'r', encoding='utf-8') as f:
+                    content = f.read()
+                self.text_box.insert('1.0', content)
+
+                with open('appdata/file_name_data.txt', 'r') as f:
+                    content = f.read()
+                self.file_name_lbl.config(text=content)
+
+            except FileNotFoundError:
+                pass
 
         def update_cnt(self, event):
             text_length = len(self.text_box.get('1.0', 'end-1c').replace('\n', '')) # returns not counted
@@ -223,6 +258,26 @@ def main():
         def clipboard(self):
             text = self.text_box.get('1.0', 'end-1c')
             return pyperclip.copy(text)
+
+
+        def quit(self):
+            if os.path.exists('appdata'):
+                with open('appdata/text_data.txt', 'w', encoding='utf-8') as f:
+                    f.write(self.text_box.get('1.0', 'end-1c'))
+
+                with open('appdata/file_name_data.txt', 'w') as f:
+                    f.write(self.file_name_lbl['text'])
+            else:
+                os.mkdir('appdata')
+                with open('appdata/text_data.txt', 'w', encoding='utf-8') as f:
+                    f.write(self.text_box.get('1.0', 'end-1c'))
+
+                with open('appdata/file_name_data.txt', 'w') as f:
+                    f.write(self.file_name_lbl['text'])
+                tk.messagebox.showerror(
+                 'Missing Appdata', 'appdata folder not found. Repairing...')
+                
+            root.destroy()
 
         def set_theme(self, set_theme_choice):
             if set_theme_choice == 'Dark':
