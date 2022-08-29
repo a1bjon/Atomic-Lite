@@ -530,7 +530,7 @@ def main():
             return None
 
     colorama.init(convert=True)
-    with open('app_addons/atomic_loading.txt', 'r') as txt:
+    with open('app_addons/loading.txt', 'r') as txt:
         cnt = txt.read()
     print(colorama.Fore.CYAN, colorama.Style.BRIGHT, cnt, colorama.Style.RESET_ALL)
 
