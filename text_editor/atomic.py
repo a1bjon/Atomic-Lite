@@ -136,6 +136,7 @@ def main():
 
                 with open('appdata/file_name_data.txt', 'w') as f:
                     f.write(self.file_name_lbl['text'])
+
             else:
                 os.mkdir('appdata')
                 with open('appdata/text_data.txt', 'w', encoding='utf-8') as f:
@@ -143,8 +144,11 @@ def main():
 
                 with open('appdata/file_name_data.txt', 'w') as f:
                     f.write(self.file_name_lbl['text'])
+
                 tk.messagebox.showerror(
-                 'Missing Appdata', 'appdata folder not found. Repairing...')
+                 'Appdata not found', 'Peforming repairs...')
+                tk.messagebox.showinfo(
+                 'Repairs Done', 'Repairs finished successfully')
 
             root.destroy()
 
@@ -157,6 +161,12 @@ def main():
                 with open('appdata/file_name_data.txt', 'r') as f:
                     content = f.read()
                 self.file_name_lbl.config(text=content)
+
+                text_length = len(self.text_box.get('1.0', 'end-1c').replace('\n', '')) # returns not counted
+                current_line, current_col = self.text_box.index('insert').split('.') # '1.0' -> ['1', '0']
+
+                self.char_cnt.config(text=f'Total: [{text_length}]')
+                self.line_char_cnt.config(text=f'Line | Col: [{current_line}] [{current_col}]')
 
             except FileNotFoundError:
                 pass
@@ -275,7 +285,9 @@ def main():
                 with open('appdata/file_name_data.txt', 'w') as f:
                     f.write(self.file_name_lbl['text'])
                 tk.messagebox.showerror(
-                 'Missing Appdata', 'appdata folder not found. Repairing...')
+                 'Appdata not found', 'Peforming repairs...')
+                tk.messagebox.showinfo(
+                 'Repairs Done', 'Repairs finished successfully')
                 
             root.destroy()
 
