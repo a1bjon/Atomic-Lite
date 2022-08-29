@@ -64,7 +64,8 @@ def main():
                           'times',
                           'arial',
                           'verdana',
-                          'terminal']
+                          'roman',
+                          'modern']
             self.font_option = tk.StringVar()
             self.font_option.set('Font')
             self.font_drop_menu = tk.OptionMenu(self.menu_bar, self.font_option, *self.fonts, command=self.set_font)
@@ -108,7 +109,7 @@ def main():
             self.text_box_con = tk.Frame(master, highlightbackground='grey', highlightthickness=3)
             self.text_box_con.pack()
             self.text_font = tkFont.Font(family='consolas', size=12)
-            self.text_box = tk.Text(self.text_box_con, bg='grey12', fg='grey',  height=49, width=211, 
+            self.text_box = tk.Text(self.text_box_con, bg='grey12', fg='grey',  height=500, width=500, 
                 font=self.text_font, insertbackground='#9933ff', selectbackground='#9933ff', 
                 border=0, yscrollcommand=self.scrollbar.set)
             self.text_box.pack()
@@ -169,7 +170,7 @@ def main():
                 self.line_char_cnt.config(text=f'Line | Col: [{current_line}] [{current_col}]')
 
             except FileNotFoundError:
-                pass
+                return None
 
         def update_cnt(self, event):
             text_length = len(self.text_box.get('1.0', 'end-1c').replace('\n', '')) # returns not counted
@@ -248,7 +249,7 @@ def main():
 
         def font_size_down(self):
             self.text_font['size'] -= 2
-            if self.text_font['size'] < 12:
+            if self.text_font['size'] < 6:
                 self.text_font['size'] = 12
             self.font_size_cnt['text'] = self.text_font['size']
 
