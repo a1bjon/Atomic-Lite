@@ -139,6 +139,9 @@ def main():
                     f.write(self.file_name_lbl['text'])
 
             else:
+                tk.messagebox.showerror(
+                 'Appdata not found', 'Peforming repairs...')
+                
                 os.mkdir('appdata')
                 with open('appdata/text_data.txt', 'w', encoding='utf-8') as f:
                     f.write(self.text_box.get('1.0', 'end-1c'))
@@ -146,8 +149,6 @@ def main():
                 with open('appdata/file_name_data.txt', 'w') as f:
                     f.write(self.file_name_lbl['text'])
 
-                tk.messagebox.showerror(
-                 'Appdata not found', 'Peforming repairs...')
                 tk.messagebox.showinfo(
                  'Repairs Done', 'Repairs finished successfully')
 
@@ -279,14 +280,16 @@ def main():
                 with open('appdata/file_name_data.txt', 'w') as f:
                     f.write(self.file_name_lbl['text'])
             else:
+                tk.messagebox.showerror(
+                 'Appdata not found', 'Peforming repairs...')
+
                 os.mkdir('appdata')
                 with open('appdata/text_data.txt', 'w', encoding='utf-8') as f:
                     f.write(self.text_box.get('1.0', 'end-1c'))
 
                 with open('appdata/file_name_data.txt', 'w') as f:
                     f.write(self.file_name_lbl['text'])
-                tk.messagebox.showerror(
-                 'Appdata not found', 'Peforming repairs...')
+    
                 tk.messagebox.showinfo(
                  'Repairs Done', 'Repairs finished successfully')
                 
