@@ -52,7 +52,7 @@ def main():
             self.font_btn_up = tk.Button(self.font_size_con, text='▲',
                 bg='grey12', fg='grey', width=3, font=('consolas', 10), border=0, command=self.font_size_up)
             self.font_btn_up.pack(side='left')
-            self.font_size_cnt = tk.Label(self.font_size_con, text=12,
+            self.font_size_cnt = tk.Label(self.font_size_con, text=10,
                 bg='grey12', fg='grey', width=2, font=('consolas', 10))
             self.font_size_cnt.pack(side='left')
             self.font_btn_down = tk.Button(self.font_size_con, text='▼',
@@ -108,7 +108,7 @@ def main():
 
             self.text_box_con = tk.Frame(master, highlightbackground='grey', highlightthickness=3)
             self.text_box_con.pack()
-            self.text_font = tkFont.Font(family='consolas', size=12)
+            self.text_font = tkFont.Font(family='consolas', size=10)
             self.text_box = tk.Text(self.text_box_con, bg='grey12', fg='grey',  height=500, width=500, 
                 font=self.text_font, insertbackground='#9933ff', selectbackground='#9933ff', 
                 border=0, yscrollcommand=self.scrollbar.set)
@@ -245,13 +245,13 @@ def main():
         def font_size_up(self):
             self.text_font['size'] += 2
             if self.text_font['size'] > 100:
-                self.text_font['size'] = 12
+                self.text_font['size'] = 10
             self.font_size_cnt['text'] = self.text_font['size']
 
         def font_size_down(self):
             self.text_font['size'] -= 2
             if self.text_font['size'] < 6:
-                self.text_font['size'] = 12
+                self.text_font['size'] = 10
             self.font_size_cnt['text'] = self.text_font['size']
 
         def help(self):
@@ -513,7 +513,7 @@ def main():
                 self.font_size_cnt.config(bg='grey12', fg='grey')
 
                 self.reset_btn.config(bg='grey12', fg='grey')
-                self.font_size_cnt['text'] = 12
+                self.font_size_cnt['text'] = 10
 
                 self.text_font.config(family='consolas', size= 12)
 
