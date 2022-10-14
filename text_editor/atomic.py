@@ -256,13 +256,13 @@ def main():
 
         def help(self):
             if sys.platform == 'win32':
-                subprocess.check_output('notepad.exe app_addons/help.txt', shell=True)
+                return subprocess.check_output('notepad.exe app_addons/help.txt', shell=True)
 
             elif sys.platform == 'darwin':
-                subprocess.check_output('open -a TextEdit app_addons/help.txt', shell=True)
+                return subprocess.check_output('open -a TextEdit app_addons/help.txt', shell=True)
 
             elif sys.platform == 'linux' or sys.platform == 'linux2':
-                subprocess.check_output('gedit app_addons/help.txt', shell=True)
+                return subprocess.check_output('gedit app_addons/help.txt', shell=True)
 
             return tk.messagebox.showerror(
                  'OS Error', 'Current operating system not supported')
