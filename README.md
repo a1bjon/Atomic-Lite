@@ -1,2 +1,2 @@
-# Atomic-Lite-Text-Editor
+# Atomic-Lite-Python
 Text editor app implemented in Python
