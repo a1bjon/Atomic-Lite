@@ -7,6 +7,7 @@ import java.io.*;
 public class Menu extends JPanel {
 
     private final AtomicGUI mainGui;
+
     JFileChooser chooser = new JFileChooser();
 
     public Menu(AtomicGUI mainGui){
@@ -35,9 +36,10 @@ public class Menu extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     openFile();
+                    mainGui.fileInfo.setText(chooser.getSelectedFile().getName());
                 }
                 catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null, "File Not Found");
+                    JOptionPane.showMessageDialog(mainGui, "File Not Found");
                 }
             }
         });
@@ -142,7 +144,6 @@ public class Menu extends JPanel {
         int fileExp = chooser.showOpenDialog(mainGui);
         if(fileExp == JFileChooser.APPROVE_OPTION){
             String path = chooser.getSelectedFile().getAbsolutePath();
-            mainGui.fileInfo.setText(chooser.getSelectedFile().getName());
             BufferedReader reader = new BufferedReader(new FileReader(path));
             String line = reader.readLine();
             while(line != null){

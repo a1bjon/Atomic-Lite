@@ -5,9 +5,13 @@ import java.awt.*;
 
 public class AtomicGUI extends JFrame{
     public JPanel mainPane;
+
     public JTextArea textBox;
+
     public JPanel fileInfoCon;
+
     public JLabel fileInfo;
+
     public AtomicGUI(){
         super("Atomic Lite");
         this.setSize(Constants.WIDTH, Constants.HEIGHT);
